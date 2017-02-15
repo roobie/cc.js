@@ -43,3 +43,27 @@ Code contracts for JavaScript
   t.equals(checkedDivision(1, -0.5), -2)
   t.equals(checkedDivision(-1, -0.5), 2)
 ```
+
+## Runtime information:
+
+It is possible to access the configuration for an instance of `cc` via
+the `getContractInfo` method:
+
+```javascript
+const doubleEven = cc()
+  .pure()
+  .nothrow()
+  .pre((n) => n % 2 === 0)
+  .post((r, [n]) => r > n)
+  .seal((n) => n * 2)
+  
+doubleEven.getContractInfo()
+/* =>
+{ pure: true,
+  nothrow: true,
+  throws: [ 'AssertionError' ],
+  pre: [ '(n) => n % 2 === 0' ],
+  post: [ '(r, [n]) => r > n' ] }
+*/
+
+```
