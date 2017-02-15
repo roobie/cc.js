@@ -1,0 +1,31 @@
+{
+  "name": "cc.js",
+  "version": "1.0.0",
+  "description": "Code contracts for JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "code_quality:check_and_fix": "standard --fix",
+    "pretest": "npm run code_quality:check_and_fix",
+    "test:with_report": "tap --cov --coverage-report=html spec/",
+    "test": "tap -J spec/",
+    "test:cont": "nodemon -x \"npm test\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roobie/cc.js.git"
+  },
+  "keywords": [
+    "code-contracts"
+  ],
+  "author": "Björn Roberg <bjorn.roberg@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/roobie/cc.js/issues"
+  },
+  "homepage": "https://github.com/roobie/cc.js#readme",
+  "dependencies": {
+    "standard": "^8.6.0",
+    "nodemon": "^1.11.0",
+    "tap": "^10.1.1"
+  }
+}
