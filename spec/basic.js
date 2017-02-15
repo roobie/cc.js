@@ -15,6 +15,10 @@ test('basic', t => {
           .pre((num, denom) => isNumeric(num) && isNumeric(denom))
           .post((result) => result !== 0)
           .post((result) => isNumeric(result))
+          .post((result, [num, denom]) => {
+            return (num === denom && result === num) ||
+              result !== num && result !== denom
+          })
           .nothrow()
           .pure()
           .seal(function div (num, denom) {
@@ -24,6 +28,12 @@ test('basic', t => {
   t.throws(() => checkedDivision(1, 0), assert.AssertionError)
   t.throws(() => checkedDivision('asd', 1), assert.AssertionError)
   t.doesNotThrow(() => checkedDivision(1, 1))
+  t.equals(checkedDivision(1, 1), 1)
+  t.equals(checkedDivision(10, 2), 5)
+  t.equals(checkedDivision(1, 2), 0.5)
+  t.equals(checkedDivision(1, 0.5), 2)
+  t.equals(checkedDivision(1, -0.5), -2)
+  t.equals(checkedDivision(-1, -0.5), 2)
 
   test('message', t => {
     try {

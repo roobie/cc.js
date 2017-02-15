@@ -99,7 +99,7 @@ function cc () {
       const cond = configuration.post[i]
       const failMsg =
               `The return value must satisfy ${cond.toString()}`
-      assert(cond(result), failMsg)
+      assert(cond(result, args), failMsg)
     }
 
     return result
