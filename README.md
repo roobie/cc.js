@@ -13,10 +13,10 @@ Code contracts for JavaScript
           .pre((num, denom) => isNumeric(num) && isNumeric(denom))
           // Check that none of the arguments are a zero
           .pre((num, denom) => num !== 0 && denom !== 0)
-          // Check that the result is not a zero
-          .post((result) => result !== 0)
           // Check that the result is numeric
           .post((result) => isNumeric(result))
+          // Check that the result is not a zero
+          .post((result) => result !== 0)
           // We can access the arguments in a post condition as well
           .post((result, [num, denom]) => {
             return (num === denom && result === num) ||

@@ -11,10 +11,10 @@ test('basic', t => {
   }
 
   const checkedDivision = cc()
-          .pre((num, denom) => num !== 0 && denom !== 0)
           .pre((num, denom) => isNumeric(num) && isNumeric(denom))
-          .post((result) => result !== 0)
+          .pre((num, denom) => num !== 0 && denom !== 0)
           .post((result) => isNumeric(result))
+          .post((result) => result !== 0)
           .post((result, [num, denom]) => {
             return (num === denom && result === num) ||
               result !== num && result !== denom
